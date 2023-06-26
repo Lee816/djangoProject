@@ -4,7 +4,8 @@ from django.db import models
 
 
 class Bookmark(models.Model):
-    title = models.CharField("TITLE", max_length=100, blank=True)  # 'TITLE' 데이터베이스 이름
+    # '이름' -> admin 사이트에서 나타나는 별칭(verbose_name)
+    title = models.CharField("TITLE", max_length=100, blank=True)
     url = models.URLField("URL", unique=True)
 
     def __str__(self) -> str:
