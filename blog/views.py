@@ -36,8 +36,10 @@ class PostMAV(generic.MonthArchiveView):
 class PostDAV(generic.DayArchiveView):
     model = Post
     date_field = "modify_dt"
+    month_format = "%m"
 
 
 class PostTAV(generic.TodayArchiveView):
     model = Post
     date_field = "modify_dt"
+    template_name = 'blog/post_archive_day.html'
