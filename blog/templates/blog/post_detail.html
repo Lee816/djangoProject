@@ -4,7 +4,7 @@
     {% if object.get_previous %}
         <a href="{{object.get_previous.get_absolute_url}}">&laquo;--{{object.get_previous}}</a>
     {% endif %}
-
+    &nbsp;&nbsp;&nbsp;&nbsp;
     {% if object.get_next %}
         <a href="{{object.get_next.get_absolute_url}}">{{ object.get_next}}--&raquo;</a>
     {% endif%}

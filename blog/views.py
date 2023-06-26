@@ -14,3 +14,30 @@ class PostLV(generic.ListView):
 
 class PostDV(generic.DetailView):
     model = Post
+
+
+class PostAV(generic.ArchiveIndexView):
+    model = Post
+    date_field = "modify_dt"
+
+
+class PostYAV(generic.YearArchiveView):
+    model = Post
+    date_field = "modify_dt"
+    make_object_list = True
+
+
+class PostMAV(generic.MonthArchiveView):
+    model = Post
+    date_field = "modify_dt"
+    month_format = "%m"
+
+
+class PostDAV(generic.DayArchiveView):
+    model = Post
+    date_field = "modify_dt"
+
+
+class PostTAV(generic.TodayArchiveView):
+    model = Post
+    date_field = "modify_dt"
