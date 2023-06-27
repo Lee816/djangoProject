@@ -42,4 +42,21 @@ class PostDAV(generic.DayArchiveView):
 class PostTAV(generic.TodayArchiveView):
     model = Post
     date_field = "modify_dt"
-    template_name = 'blog/post_archive_day.html'
+    template_name = "blog/post_archive_day.html"
+
+
+class TagCloudTV(generic.TemplateView):
+    template_name = "taggit/taggit_cloud.html"
+
+
+class TaggedObjectLV(generic.ListView):
+    template_name = "taggit/taggit_post_list.html"
+    model = Post
+
+    def get_queryset(self):
+        return Post.objects.filter(tags__name=self.kwargs.get("tag"))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["tagname"] = self.kwargs["tag"]
+        return context
