@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from .views import HomeView
 from bookmark.views import BookmarkLV, BookmarkDV
 
 urlpatterns = [
+    path("", HomeView.as_view(), name="home"),
     path("admin/", admin.site.urls),
     path("blog/", include("blog.urls")),
     path("bookmark/", BookmarkLV.as_view(), name="index"),
