@@ -12,7 +12,7 @@
             <li class='h5'>Photo Description</li>
             {% if object.description %}
                 <p>{{ object.description|linebreaks }}</p>
-            {% elif %}
+            {% else %}
                 <p>(blank)</p>
             {% endif %}
             <li class='h5'>Date Uploaded</li>
