@@ -1,7 +1,12 @@
+from typing import Any
+from django.http import HttpResponse
+from django.shortcuts import render
 from django.views import generic
 from django.conf import settings
+from django.db.models import Q
 
 from .models import Post
+from .forms import PostSearchForm
 
 # Create your views here.
 
@@ -71,3 +76,23 @@ class TaggedObjectLV(generic.ListView):
         context = super().get_context_data(**kwargs)
         context["tagname"] = self.kwargs["tag"]
         return context
+
+
+class SearchFormView(generic.FormView):
+    form_class = PostSearchForm
+    template_name = "blog/post_search.html"
+
+    def form_valid(self, form: Any) -> HttpResponse:
+        searchWord = form.cleaned_data["search_word"]
+        post_list = Post.objects.filter(
+            Q(title__icontains=searchWord)
+            or Q(description__icontains=searchWord)
+            or Q(content__icontains=searchWord)
+        ).distinct()
+
+        context = {}
+        context["form"] = form
+        context["search_term"] = searchWord
+        context["object_list"] = post_list
+
+        return render(self.request, self.template_name, context)
