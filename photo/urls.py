@@ -6,7 +6,7 @@ urlpatterns = [
     path("", views.AlbumLV.as_view(), name="index"),
     path("album", views.AlbumLV.as_view(), name="albim_list"),
     path("album/<int:pk>/", views.AlbumDV.as_view(), name="album_detail"),
-    path("photo/<int:pl>/", views.PhotoDV.as_veiw(), name="photo_detail"),
+    path("photo/<int:pl>/", views.PhotoDV.as_view(), name="photo_detail"),
 ]
 
 # from django.views.generic import ListView, DetailView
