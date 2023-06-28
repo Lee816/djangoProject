@@ -8,7 +8,7 @@ from django.db.models.fields.files import (
 
 class ThumbnailImageFieldFile(ImageFieldFile):  # 파일 시스템에 직접 파일을 쓰고 지우는 작업을 한다.
     def _add_thumb(
-        s,
+        self, s
     ):  # 기존 이미지 파일명을 기준으로 썸네일 파일명을 만들어준다(썸네일 이미지의 경로나 URL을 만들때 사용). 123.jpg -> 123.thumb.jpg
         parts = s.split(".")
         parts.insert(-1, "thumb")

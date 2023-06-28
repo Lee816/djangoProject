@@ -1,6 +1,7 @@
 virtual
 db.sqlite3
 .vscode
+사진자료
 # Created by https://www.toptal.com/developers/gitignore/api/django
 # Edit at https://www.toptal.com/developers/gitignore?templates=django
 
