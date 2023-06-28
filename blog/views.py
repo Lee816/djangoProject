@@ -86,8 +86,8 @@ class SearchFormView(generic.FormView):
         searchWord = form.cleaned_data["search_word"]
         post_list = Post.objects.filter(
             Q(title__icontains=searchWord)
-            or Q(description__icontains=searchWord)
-            or Q(content__icontains=searchWord)
+            | Q(description__icontains=searchWord)
+            | Q(content__icontains=searchWord)
         ).distinct()
 
         context = {}
