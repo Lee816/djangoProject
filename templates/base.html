@@ -53,7 +53,7 @@
             </ul>
             <form class='form-inline my-2 my-lg-0' method='post' action='{% url 'blog:search' %}'>
                 {% csrf_token %}
-                <input name='search_word' type="search" class='form-control mr-sm-2' placeholder='Search'>
+                <input name='search_word' type="search" class='form-control mr-sm-2' placeholder='Search within the Blog'>
                 <button type='submit' class='btn btn-outline-success my-2 my-sm-0'>
                     Search
                 </button>
