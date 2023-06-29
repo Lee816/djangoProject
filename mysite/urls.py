@@ -35,4 +35,4 @@ urlpatterns = [
     path("photo/", include("photo.urls")),  # phto 앱의 url 처리
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
-)  # 기존 URL패턴에 static() 함수가 반환하는 패턴을 추가
+)  # 기존 URL패턴에 static() 함수가 반환하는 URL패턴을 추가
