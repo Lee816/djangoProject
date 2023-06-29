@@ -23,15 +23,24 @@ from django.conf import (
     settings,
 )  # settings 변수는 settings.py 모듈에서 정의한 항목들을 담고 있는 개체를 가리키는 reference
 
-from .views import HomeView
+from .views import HomeView,UserCreateView,UserCreateDoneTV
 from bookmark.views import BookmarkLV, BookmarkDV
 
 urlpatterns = [
+    # 메인페이지
     path("", HomeView.as_view(), name="home"),
+    # 어드민
     path("admin/", admin.site.urls),
+    # 인증
+    path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/register/", UserCreateView.as_view(), name="register"),
+    path("accounts/register/done/", UserCreateDoneTV.as_view(), name="register_done"),
+    # 블로그앱
     path("blog/", include("blog.urls")),
+    # 북마크앱
     path("bookmark/", BookmarkLV.as_view(), name="index"),
     path("bookmark/<int:pk>/", BookmarkDV.as_view(), name="detail"),
+    # 포토앱
     path("photo/", include("photo.urls")),  # phto 앱의 url 처리
 ] + static(
     settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
