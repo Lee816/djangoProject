@@ -50,6 +50,25 @@
                 <li class='nav-item'>
                     <a href="{% url 'admin:index'%}" class='nav-link disabled' tabindex='-1'>Admin</a>
                 </li>
+                <li class='nav-item dropdown'>
+                    {% if user.is_active %}
+                        <a href="#" class='nav-link dropdown-toggle text-white' data-toggle='dropdown'>
+                            <i class='fas fa-user'></i>&ensp;{% firstof user.get_short_name user.get_username %}&ensp;
+                        </a>
+                        <div class='dropdown-menu'>
+                            <a href="{% url 'logout' %}" class='dropdown-item'>Logout</a>
+                            <a href="{% url 'password_change' %}" class='dropdown-item'>Change Password</a>
+                        </div>
+                    {% else %}
+                        <a href="#" class='nav-link dropdown-toggle text-white' data-toggle='dropdown'>
+                            <i class='fas fa-user'></i>&ensp;Anonymous&ensp;
+                        </a>
+                        <div class='dropdown-menu'>
+                            <a href="{% url 'login' %}" class='dropdown-item'>Login</a>
+                            <a href="{% url 'register' %}" class='dropdown-item'>Register</a>
+                        </div>
+                    {% endif %}
+                </li>
             </ul>
             <form class='form-inline my-2 my-lg-0' method='post' action='{% url 'blog:search' %}'>
                 {% csrf_token %}
