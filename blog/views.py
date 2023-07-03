@@ -4,6 +4,9 @@ from django.shortcuts import render
 from django.views import generic
 from django.conf import settings
 from django.db.models import Q
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from mysite.views import OwnerOnlyMixin
 
 from .models import Post
 from .forms import PostSearchForm
@@ -96,3 +99,19 @@ class SearchFormView(generic.FormView):
         context["object_list"] = post_list
 
         return render(self.request, self.template_name, context)
+
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+    pass
+
+
+class PostChangeLV(LoginRequiredMixin, ListView):
+    pass
+
+
+class PostUpdateView(OwnerOnlyMixin, UpdateView):
+    pass
+
+
+class PostDeleteView(OwnerOnlyMixin, DeleteView):
+    pass
