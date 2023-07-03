@@ -23,8 +23,7 @@ from django.conf import (
     settings,
 )  # settings 변수는 settings.py 모듈에서 정의한 항목들을 담고 있는 개체를 가리키는 reference
 
-from .views import HomeView,UserCreateView,UserCreateDoneTV
-from bookmark.views import BookmarkLV, BookmarkDV
+from .views import HomeView, UserCreateView, UserCreateDoneTV
 
 urlpatterns = [
     # 메인페이지
@@ -38,8 +37,7 @@ urlpatterns = [
     # 블로그앱
     path("blog/", include("blog.urls")),
     # 북마크앱
-    path("bookmark/", BookmarkLV.as_view(), name="index"),
-    path("bookmark/<int:pk>/", BookmarkDV.as_view(), name="detail"),
+    path("blog/", include("bookmark.urls")),
     # 포토앱
     path("photo/", include("photo.urls")),  # phto 앱의 url 처리
 ] + static(
