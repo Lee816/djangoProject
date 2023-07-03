@@ -8,7 +8,7 @@ class HomeView(TemplateView):
 
 
 class UserCreateView(CreateView):
-    template_name = "registraion/register.html"
+    template_name = "registration/register.html"
     form_class = UserCreationForm
     success_url = reverse_lazy("register_done")
 
