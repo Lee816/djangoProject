@@ -37,7 +37,7 @@ urlpatterns = [
     # 블로그앱
     path("blog/", include("blog.urls")),
     # 북마크앱
-    path("blog/", include("bookmark.urls")),
+    path("bookmark/", include("bookmark.urls")),
     # 포토앱
     path("photo/", include("photo.urls")),  # phto 앱의 url 처리
 ] + static(
