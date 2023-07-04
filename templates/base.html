@@ -27,8 +27,14 @@
                         Home <span class='sr-only'>current</span>
                     </a>
                 </li>
-                <li class='nav-item'>
-                    <a href="{% url 'bookmark:index' %}" class='nav-link'>Bookmark</a>
+                <li class='nav-item dropdown'>
+                    {% comment %} <a href="{% url 'bookmark:index' %}" class='nav-link'>Bookmark</a> {% endcomment %}
+                    <a href="#" class='nav-link dropdown-toggle text-white' data-toggle='dropdown'>Bookmark</a>
+                    <div class='dropdown-menu'>
+                        <a href="{% url 'bookmark:index' %}" class='dropdown-item'>List</a>
+                        <a href="{% url 'bookmakr:add' %}" class='dropdown-item'>Add</a>
+                        <a href="{% url 'bookmakr:change' %}" class='dropdown-item'>Change</a>
+                    </div>
                 </li>
                 <li class='nav-item'>
                     <a href="{% url 'photo:index' %}" class='nav-link'>Photo</a>
@@ -45,6 +51,8 @@
                             
                         </div>
                         <a href="{% url 'blog:search' %}" class='dropdown-item'>Search</a>
+                        <a href="{% url 'blog:add' %}" class='dropdown-item'>Add</a>
+                        <a href="{% url 'blog:change' %}" class='dropdown-item'>Change</a>
                     </div>
                 </li>
                 <li class='nav-item'>
