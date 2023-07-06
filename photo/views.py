@@ -87,3 +87,30 @@ class AlbumPhotoCV(LoginRequiredMixin, generic.CreateView):
             return redirect(self.get_success_url())
         else:
             return self.render_to_response(self.get_context_data(form=form))
+
+
+class AlbumPhotoUV(OwnerOnlyMixin, generic.UpdateView):
+    model = Album
+    fields = ("name", "description")
+    success_url = reverse_lazy("photo:index")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context["formset"] = PhotoInlineFormSet(
+                self.request.POST, self.request.FILES, instance=self.object
+            )
+        else:
+            context["formset"] = PhotoInlineFormSet(instance=self.object)
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        formset = context["formset"]
+        if formset.is_valid():
+            self.object = form.save()
+            formset.instance = self.object
+            formset.save()
+            return redirect(self.get_success_url())
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
