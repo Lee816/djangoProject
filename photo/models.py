@@ -9,6 +9,13 @@ from .fields import ThumbnailImageField
 class Album(models.Model):
     name = models.CharField(max_length=30)
     description = models.CharField("One Line Description", max_length=100, blank=True)
+    owner = models.ForeignKey(
+        "auth.User",
+        on_delete=models.CASCADE,
+        verbose_name="OWNER",
+        blank=True,
+        null=True,
+    )
 
     class Meta:
         ordering = ("name",)
@@ -28,6 +35,13 @@ class Photo(models.Model):
         upload_to="photo/%Y/%m"
     )  # 사진에 대한 원본이미지와 썸네일 이미지를 모두 젖아할 수 있는 필드로 커스텀 필드
     upload_dt = models.DateTimeField("Uploaded Date", auto_now_add=True)
+    owner = models.ForeignKey(
+        "auth.User",
+        on_delete=models.CASCADE,
+        verbose_name="OWNER",
+        blank=True,
+        null=True,
+    )
 
     class Meat:
         ordering = ("title",)
